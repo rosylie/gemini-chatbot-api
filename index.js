@@ -59,7 +59,7 @@ app.post("/api/chat", async (req, res) => {
       contents,
       config: {
         temperature: 0.3,
-        systemInstructions: SCHOOL_CONTEXT,
+        systemInstruction: SCHOOL_CONTEXT,
       },
     });
     res.status(200).json({ result: response.text });
