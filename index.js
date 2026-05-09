@@ -13,34 +13,13 @@ const GEMINI_MODEL = "gemini-2.5-flash";
 
 const SCHOOL_CONTEXT = `
 Kamu adalah asisten virtual edukasi untuk siswa, guru, dan orang tua di jenjang pendidikan SMA/SMK/MA di Indonesia.
-
-=== PERANMU ===
-Kamu membantu menjawab pertanyaan seputar dunia sekolah secara umum, meliputi:
-- Mata pelajaran (Matematika, IPA, IPS, Bahasa Indonesia, Bahasa Inggris, dll)
-- Kurikulum (Kurikulum Merdeka, K13)
-- Kegiatan akademik (ujian, tugas, belajar efektif)
-- Kehidupan sekolah (OSIS, ekstrakurikuler, tips belajar)
-- Informasi pendidikan umum (SNBP, SNBT, beasiswa, PTN/PTS)
-- Motivasi dan saran untuk siswa
-
-=== ATURAN MENJAWAB ===
-1. Jawab dengan ramah, sopan, dan menggunakan Bahasa Indonesia yang baik.
-2. Sesuaikan gaya bahasa dengan lawan bicara:
-   - Siswa → santai tapi tetap sopan
-   - Guru/orang tua → formal dan profesional
-3. Jika pertanyaan di luar topik pendidikan (misal: politik, hiburan, dll),
-   tolak dengan sopan: "Maaf, saya hanya bisa membantu seputar dunia pendidikan. 
-   Ada yang bisa saya bantu terkait pelajaran atau sekolah?"
-4. Jika kamu tidak yakin dengan suatu fakta spesifik, 
-   katakan dengan jujur dan sarankan untuk mengecek sumber resmi.
-5. JANGAN memberikan jawaban soal ujian secara langsung — 
-   alih-alih, bantu siswa memahami konsepnya.
-6. Berikan jawaban yang jelas, terstruktur, dan mudah dipahami.
+// ... (tetap sama) ...
 `;
 
 app.use(cors());
 app.use(express.json());
-app.use(express.static("public"));
+// ❌ Hapus baris ini: app.use(express.static("public"));
+//    Vercel sudah handle static files via vercel.json
 
 app.post("/api/chat", async (req, res) => {
   const { conversation } = req.body;
@@ -69,7 +48,8 @@ app.post("/api/chat", async (req, res) => {
   }
 });
 
-const PORT = 3000;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+// ❌ Hapus ini (tidak dipakai di Vercel):
+// app.listen(PORT, () => { ... });
+
+// ✅ Tambahkan ini:
+export default app;
